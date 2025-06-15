@@ -60,4 +60,8 @@
 - 程序会自动创建所需的文件夹和文件
 - 所有操作都有详细的日志记录
 - 程序启动时会先处理已有的webp图片，然后再开始监控
-- 按Ctrl+C可以停止监控程序 
+- 按Ctrl+C可以停止监控程序
+
+## GitHub 仓库
+
+本项目的代码已上传至 GitHub，仓库地址为：[https://github.com/XUXIKAI886/shangou-caiji](https://github.com/XUXIKAI886/shangou-caiji) 
