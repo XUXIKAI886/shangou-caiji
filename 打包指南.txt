@@ -1,0 +1,96 @@
+# 花卉产品信息监控程序打包指南
+
+## 准备工作
+
+1. 确保已安装Python 3.6或更高版本
+2. 确保已安装所有依赖库：
+   ```
+   pip install -r requirements.txt
+   ```
+3. 安装PyInstaller：
+   ```
+   pip install pyinstaller
+   ```
+
+## 打包步骤
+
+### 方法一：使用命令行直接打包
+
+在命令行中执行以下命令：
+
+```
+pyinstaller --onefile --name "FlowerMonitor" simplified_flower_monitor.py
+```
+
+### 方法二：使用spec文件打包（推荐）
+
+1. 创建spec文件（flower_monitor.spec）：
+```python
+# -*- mode: python ; coding: utf-8 -*-
+
+block_cipher = None
+
+a = Analysis(
+    ['simplified_flower_monitor.py'],
+    pathex=[],
+    binaries=[],
+    datas=[],
+    hiddenimports=['pandas', 'openpyxl', 'PIL', 'watchdog.observers', 'watchdog.events'],
+    hookspath=[],
+    hooksconfig={},
+    runtime_hooks=[],
+    excludes=[],
+    win_no_prefer_redirects=False,
+    win_private_assemblies=False,
+    cipher=block_cipher,
+    noarchive=False,
+)
+pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+
+exe = EXE(
+    pyz,
+    a.scripts,
+    a.binaries,
+    a.zipfiles,
+    a.datas,
+    [],
+    name='FlowerMonitor',
+    debug=False,
+    bootloader_ignore_signals=False,
+    strip=False,
+    upx=True,
+    upx_exclude=[],
+    runtime_tmpdir=None,
+    console=True,
+    disable_windowed_traceback=False,
+    argv_emulation=False,
+    target_arch=None,
+    codesign_identity=None,
+    entitlements_file=None,
+)
+```
+
+2. 使用spec文件打包：
+```
+pyinstaller flower_monitor.spec
+```
+
+## 打包后的文件
+
+打包完成后，在`dist`文件夹中会生成一个名为`FlowerMonitor.exe`的可执行文件。
+
+## 分发说明
+
+分发时，只需要提供以下文件：
+1. `FlowerMonitor.exe`（打包生成的可执行文件）
+2. 一个空的`flower_images_jpg`文件夹（用于存储下载的图片）
+
+## 注意事项
+
+1. 确保目标电脑上的路径`D:\ailun\shangou.txt`存在，或者修改程序中的路径设置
+2. 如果需要修改源数据文件路径，请在分发前修改`simplified_flower_monitor.py`文件中的`json_file_path`变量，然后重新打包
+
+## 常见问题
+
+1. 如果打包过程中出现错误，尝试在虚拟环境中执行打包命令
+2. 如果运行时出现"找不到模块"错误，确保在`hiddenimports`中添加了所有必要的依赖 
