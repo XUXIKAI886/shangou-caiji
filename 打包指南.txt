@@ -1,4 +1,4 @@
-# 花卉产品信息监控程序打包指南
+# 美团闪购产品信息监控程序打包指南
 
 ## 准备工作
 
@@ -19,19 +19,19 @@
 在命令行中执行以下命令：
 
 ```
-pyinstaller --onefile --name "FlowerMonitor" simplified_flower_monitor.py
+pyinstaller --onefile --name "MeituanShangou" simplified_meituanshangou_monitor.py
 ```
 
 ### 方法二：使用spec文件打包（推荐）
 
-1. 创建spec文件（flower_monitor.spec）：
+1. 创建spec文件（meituanshangou_monitor.spec）：
 ```python
 # -*- mode: python ; coding: utf-8 -*-
 
 block_cipher = None
 
 a = Analysis(
-    ['simplified_flower_monitor.py'],
+    ['simplified_meituanshangou_monitor.py'],
     pathex=[],
     binaries=[],
     datas=[],
@@ -54,7 +54,7 @@ exe = EXE(
     a.zipfiles,
     a.datas,
     [],
-    name='FlowerMonitor',
+    name='MeituanShangou',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -72,23 +72,23 @@ exe = EXE(
 
 2. 使用spec文件打包：
 ```
-pyinstaller flower_monitor.spec
+pyinstaller meituanshangou_monitor.spec
 ```
 
 ## 打包后的文件
 
-打包完成后，在`dist`文件夹中会生成一个名为`FlowerMonitor.exe`的可执行文件。
+打包完成后，在`dist`文件夹中会生成一个名为`MeituanShangou.exe`的可执行文件。
 
 ## 分发说明
 
 分发时，只需要提供以下文件：
-1. `FlowerMonitor.exe`（打包生成的可执行文件）
-2. 一个空的`flower_images_jpg`文件夹（用于存储下载的图片）
+1. `MeituanShangou.exe`（打包生成的可执行文件）
+2. 一个空的`meituanshangou_images_jpg`文件夹（用于存储下载的图片）
 
 ## 注意事项
 
 1. 确保目标电脑上的路径`D:\ailun\shangou.txt`存在，或者修改程序中的路径设置
-2. 如果需要修改源数据文件路径，请在分发前修改`simplified_flower_monitor.py`文件中的`json_file_path`变量，然后重新打包
+2. 如果需要修改源数据文件路径，请在分发前修改`simplified_meituanshangou_monitor.py`文件中的`json_file_path`变量，然后重新打包
 
 ## 常见问题
 

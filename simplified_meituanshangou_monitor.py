@@ -24,7 +24,7 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('flower_monitor.log', encoding='utf-8'),
+        logging.FileHandler('meituanshangou_monitor.log', encoding='utf-8'),
         logging.StreamHandler(sys.stdout)
     ]
 )
@@ -32,8 +32,8 @@ logger = logging.getLogger(__name__)
 
 # 文件和文件夹路径
 json_file_path = 'D:\\ailun\\shangou.txt'  # 源数据文件路径
-excel_path = 'flower_products.xlsx'  # 生成的Excel文件路径
-jpg_img_folder = 'flower_images_jpg'  # jpg图片文件夹
+excel_path = 'meituanshangou_products.xlsx'  # 生成的Excel文件
+jpg_img_folder = 'meituanshangou_images_jpg'  # jpg图片文件夹
 last_hash_file = 'last_file_hash.txt'  # 存储上次处理的文件哈希值
 
 # 全局变量，存储已处理的产品信息
@@ -197,7 +197,7 @@ def clean_filename(name, index):
     
     # 如果名称为空或者只包含特殊字符，使用默认名称
     if not safe_name or safe_name.isspace():
-        safe_name = f"flower_{index+1}"
+        safe_name = f"美团闪购_{index+1}"
     
     # 限制文件名长度，Windows最大路径长度为260字符，文件名最好不超过100字符
     if len(safe_name) > 80:
@@ -405,7 +405,7 @@ class FileChangeHandler(FileSystemEventHandler):
 # 主函数
 def main():
     logger.info("=" * 50)
-    logger.info("花卉产品信息实时监控程序 (简化版)")
+    logger.info("美团闪购产品信息实时监控程序 (简化版)")
     logger.info("=" * 50)
     logger.info(f"监控文件: {json_file_path}")
     logger.info(f"Excel文件: {excel_path}")

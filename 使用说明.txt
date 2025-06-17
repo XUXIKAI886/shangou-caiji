@@ -1,0 +1,35 @@
+【美团闪购采集工具使用说明】
+
+一、软件说明
+1. 本软件已打包为独立可执行程序，无需安装Python和依赖库
+2. 软件功能：监控指定JSON文件，提取美团闪购产品信息，并保存为Excel文件与图片
+
+二、在新电脑上使用步骤
+1. 将整个"闪购采集"文件夹复制到目标电脑上（保持完整文件夹结构）
+2. 确保目标电脑上存在路径"D:\ailun\shangou.txt"
+   - 您需要在该路径创建或放置数据文件
+3. 双击"闪购采集工具.bat"启动程序
+4. 程序将自动监控JSON数据文件的变化并处理数据
+
+三、注意事项
+1. 软件当前有以下路径限制：
+   - 数据文件路径固定为："D:\ailun\shangou.txt"
+   - 批处理文件(.bat)必须与dist文件夹在同一目录下
+2. 提取的产品信息保存在以下位置：
+   - Excel文件：meituanshangou_products.xlsx
+   - 产品图片：meituanshangou_images_jpg文件夹
+
+四、文件夹结构（必须保持完整）
+- 闪购采集工具.bat - 启动脚本
+- dist/simplified_meituanshangou_monitor.exe - 主程序
+- meituanshangou_products.xlsx - 产品数据（自动生成）
+- meituanshangou_images_jpg/ - 产品图片（自动生成）
+- meituanshangou_monitor.log - 运行日志（自动生成）
+
+五、故障排除
+1. 如启动失败，请检查是否有杀毒软件阻止程序运行
+2. 如监控不工作，请检查数据文件路径"D:\ailun\shangou.txt"是否存在
+3. 如需更改数据文件路径，需要修改源代码并重新编译
+
+【技术支持】
+如有任何问题，请联系技术支持。

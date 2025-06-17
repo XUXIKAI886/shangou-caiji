@@ -1,32 +1,28 @@
 # -*- mode: python ; coding: utf-8 -*-
 
-block_cipher = None
 
 a = Analysis(
-    ['simplified_flower_monitor.py'],
+    ['simplified_meituanshangou_monitor.py'],
     pathex=[],
     binaries=[],
-    datas=[],
-    hiddenimports=['pandas', 'openpyxl', 'PIL', 'watchdog.observers', 'watchdog.events'],
+    datas=[('README.md', '.')],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
     excludes=[],
-    win_no_prefer_redirects=False,
-    win_private_assemblies=False,
-    cipher=block_cipher,
     noarchive=False,
+    optimize=0,
 )
-pyz = PYZ(a.pure, a.zipped_data, cipher=block_cipher)
+pyz = PYZ(a.pure)
 
 exe = EXE(
     pyz,
     a.scripts,
     a.binaries,
-    a.zipfiles,
     a.datas,
     [],
-    name='花卉产品信息监控',
+    name='simplified_meituanshangou_monitor',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -39,4 +35,5 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-) 
+    icon='NONE',
+)

@@ -1,0 +1,1 @@
+{"data":{"products":[{"name":"示例产品","price":199,"picUrl":"https://example.com/image.jpg"}]}} 
