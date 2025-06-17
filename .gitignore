@@ -1,0 +1,21 @@
+# 排除PyInstaller构建文件
+dist/
+build/
+*.spec
+
+# 排除Python编译文件
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# 排除日志文件
+*.log
+
+# 排除临时文件
+temp_webp/
+*.temp
+
+# 排除虚拟环境
+venv/
+env/ 
