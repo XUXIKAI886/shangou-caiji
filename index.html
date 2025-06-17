@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美团闪购产品采集工具</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        header {
+            background-color: #ffbd00;
+            color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h1 {
+            margin: 0;
+            font-size: 2.4em;
+        }
+        h2 {
+            color: #ff6600;
+            border-bottom: 2px solid #ff6600;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        section {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        ul, ol {
+            padding-left: 25px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 3px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-family: Consolas, monospace;
+            font-size: 0.9em;
+        }
+        .important {
+            background-color: #fff9e6;
+            border-left: 4px solid #ffbd00;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .steps {
+            counter-reset: step-counter;
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .steps li {
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 15px;
+        }
+        .steps li:before {
+            content: counter(step-counter);
+            counter-increment: step-counter;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 25px;
+            height: 25px;
+            background-color: #ff6600;
+            color: #fff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            font-size: 0.9em;
+        }
+        .output-files {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .file-item {
+            flex: 1;
+            min-width: 250px;
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .file-item h4 {
+            margin-top: 0;
+            color: #333;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>美团闪购产品采集工具</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>软件简介</h2>
+            <p>本软件用于监控特定JSON数据文件，自动提取美团闪购产品信息，并整理为Excel表格和图片。</p>
+        </section>
+
+        <section>
+            <h2>使用前准备</h2>
+            <ol class="steps">
+                <li>下载并安装"Fiddler Classic"抓包软件</li>
+                <li>打开Fiddler，点击菜单中的"Rules" &gt; "Customize Rules..."</li>
+                <li>在打开的脚本编辑器中，找到<code>OnBeforeResponse</code>函数</li>
+                <li>在函数内部添加以下代码：
+                    <pre>if(oSession.uriContains("https://wx-shangou.meituan.com/wxapp/v1/poi/")){
+   oSession.utilDecodeResponse();
+   oSession.SaveResponse("D:/ailun/shangou.txt",true);
+   oSession.SaveResponseBody("D:/ailun/shangou.txt");
+}</pre>
+                </li>
+                <li>保存并关闭脚本编辑器</li>
+                <li>确保Fiddler处于抓包状态(Capturing状态)</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>快速开始</h2>
+            <ol class="steps">
+                <li>在目标电脑上创建数据文件路径：<code>D:\ailun\shangou.txt</code></li>
+                <li>将整个软件文件夹复制到目标电脑</li>
+                <li>打开Fiddler Classic并确保正在抓包</li>
+                <li>双击<code>闪购采集工具.bat</code>启动程序</li>
+            </ol>
+        </section>
+
+        <section>
+            <h2>重要说明</h2>
+            <div class="important">
+                <ul>
+                    <li>软件为独立可执行程序，无需安装Python和依赖库</li>
+                    <li>数据文件路径固定为：<code>D:\ailun\shangou.txt</code></li>
+                    <li>批处理文件必须与dist文件夹保持在同一目录层级</li>
+                    <li><strong>必须先运行Fiddler进行数据抓取，程序才能获取到数据源</strong></li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>输出文件</h2>
+            <div class="output-files">
+                <div class="file-item">
+                    <h4>Excel数据</h4>
+                    <p><code>meituanshangou_products.xlsx</code></p>
+                    <p>包含提取的所有产品信息</p>
+                </div>
+                <div class="file-item">
+                    <h4>产品图片</h4>
+                    <p><code>meituanshangou_images_jpg/</code></p>
+                    <p>所有下载转换后的产品图片</p>
+                </div>
+                <div class="file-item">
+                    <h4>运行日志</h4>
+                    <p><code>meituanshangou_monitor.log</code></p>
+                    <p>软件运行的详细日志记录</p>
+                </div>
+            </div>
+            <p class="important" style="margin-top: 20px;">详细使用方法请查看<code>使用说明.txt</code></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright &copy; 2024 美团闪购产品采集工具</p>
+    </footer>
+</body>
+</html>
