@@ -506,6 +506,47 @@
                 justify-content: center;
             }
         }
+
+        /* 预览图片样式 */
+        #preview {
+            padding-bottom: 2rem;
+        }
+        
+        .preview-intro {
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .preview-gallery {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .preview-item {
+            width: 100%;
+            margin-bottom: 2rem;
+        }
+        
+        .preview-image {
+            width: 100%;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .preview-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .preview-caption {
+            padding: 0.5rem 0;
+            font-weight: 500;
+            text-align: left;
+            color: var(--meituan-orange);
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
@@ -530,6 +571,7 @@
                     <li><button class="nav-link" data-target="quickstart">快速开始</button></li>
                     <li><button class="nav-link" data-target="important">重要说明</button></li>
                     <li><button class="nav-link" data-target="output">输出文件</button></li>
+                    <li><button class="nav-link" data-target="preview">软件预览</button></li>
                 </ul>
             </nav>
         </div>
@@ -542,6 +584,7 @@
                     <li><button class="nav-link" data-target="quickstart">快速开始</button></li>
                     <li><button class="nav-link" data-target="important">重要说明</button></li>
                     <li><button class="nav-link" data-target="output">输出文件</button></li>
+                    <li><button class="nav-link" data-target="preview">软件预览</button></li>
                 </ul>
             </div>
         </nav>
