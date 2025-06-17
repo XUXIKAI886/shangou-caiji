@@ -4,29 +4,44 @@
 1. 本软件已打包为独立可执行程序，无需安装Python和依赖库
 2. 软件功能：监控指定JSON文件，提取美团闪购产品信息，并保存为Excel文件与图片
 
-二、在新电脑上使用步骤
+二、使用前准备(必须)
+1. 下载并安装"Fiddler Classic"抓包软件
+2. 打开Fiddler，点击菜单中的"Rules" > "Customize Rules..."
+3. 在打开的脚本编辑器中，找到OnBeforeResponse函数
+4. 在函数内部添加以下代码：
+   if(oSession.uriContains("https://wx-shangou.meituan.com/wxapp/v1/poi/")){
+      oSession.utilDecodeResponse();
+      oSession.SaveResponse("D:/ailun/shangou.txt",true);
+      oSession.SaveResponseBody("D:/ailun/shangou.txt");
+   }
+5. 保存并关闭脚本编辑器
+6. 确保Fiddler处于抓包状态(Capturing状态)
+
+三、在新电脑上使用步骤
 1. 将整个"闪购采集"文件夹复制到目标电脑上（保持完整文件夹结构）
 2. 确保目标电脑上存在路径"D:\ailun\shangou.txt"
    - 您需要在该路径创建或放置数据文件
-3. 双击"闪购采集工具.bat"启动程序
-4. 程序将自动监控JSON数据文件的变化并处理数据
+3. 启动Fiddler Classic并确保正在抓包状态
+4. 双击"闪购采集工具.bat"启动程序
+5. 程序将自动监控JSON数据文件的变化并处理数据
 
-三、注意事项
+四、注意事项
 1. 软件当前有以下路径限制：
    - 数据文件路径固定为："D:\ailun\shangou.txt"
    - 批处理文件(.bat)必须与dist文件夹在同一目录下
 2. 提取的产品信息保存在以下位置：
    - Excel文件：meituanshangou_products.xlsx
    - 产品图片：meituanshangou_images_jpg文件夹
+3. 必须先启动并配置好Fiddler Classic才能获取数据
 
-四、文件夹结构（必须保持完整）
+五、文件夹结构（必须保持完整）
 - 闪购采集工具.bat - 启动脚本
 - dist/simplified_meituanshangou_monitor.exe - 主程序
 - meituanshangou_products.xlsx - 产品数据（自动生成）
 - meituanshangou_images_jpg/ - 产品图片（自动生成）
 - meituanshangou_monitor.log - 运行日志（自动生成）
 
-五、故障排除
+六、故障排除
 1. 如启动失败，请检查是否有杀毒软件阻止程序运行
 2. 如监控不工作，请检查数据文件路径"D:\ailun\shangou.txt"是否存在
 3. 如需更改数据文件路径，需要修改源代码并重新编译
